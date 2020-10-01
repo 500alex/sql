@@ -1,3 +1,24 @@
+// Создание таблицы
+
+create table "user"
+(
+    user_id integer,
+    name varchar(125) not null,
+    product_id integer,
+    primary key(user_id),
+    foreign key(product_id) references products(products_id))
+
+    CREATE TABLE Orders (
+    OrderID int NOT NULL,
+    OrderNumber int NOT NULL,
+    PersonID int,
+    PRIMARY KEY (OrderID),
+    CONSTRAINT FK_PersonOrder FOREIGN KEY (PersonID)
+    REFERENCES Persons(PersonID)
+);
+
+----------------------------------------------
+
 select * from "user"
 
 -------------------------
@@ -89,3 +110,16 @@ union
 select country from "products"
 
 --------------------------------------
+
+JOIN -----------------
+
+select * from "products"
+inner join "category" on "category".category_id = "products".category_id
+
+//Выводим колличество товаров в категории
+
+select "category".name,count(*) from "category"
+inner join "products" on "products".category_id = "category".category_id
+group by "category".name
+
+------------------------
